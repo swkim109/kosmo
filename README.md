@@ -1,2 +1,3 @@
 # kosmo
-KOSMO course
+
+Educational resources for KOSMO
