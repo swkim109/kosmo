@@ -19,7 +19,7 @@ RUN apt-get update \
       && apt-get update \
       && apt-get install -y ethereum
 
-RUN apt-get install -y git curl tree vim
+RUN apt-get update && apt-get install -y git curl tree vim
 
 RUN mkdir $HOME/edu && mkdir $HOME/shared
 
