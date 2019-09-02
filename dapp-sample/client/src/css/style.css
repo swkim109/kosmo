@@ -1,0 +1,17 @@
+
+div.container-fluid {
+    padding-top: 30px;
+}
+
+.custom-align-center {
+    text-align: center;
+    font-size: large;
+}
+
+
+
+p {
+    font-family: Consolas, serif;
+    font-size: 18px;
+}
+
