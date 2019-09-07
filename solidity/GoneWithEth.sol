@@ -7,7 +7,7 @@ contract GoneWithEth {
     address payable public owner;
     Reentrance public reentrance;
 
-    constructor(address _addr) public payable {
+    constructor(address payable _addr) public payable {
         owner = msg.sender;
         reentrance = Reentrance(_addr);
     }
