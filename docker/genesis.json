@@ -3,11 +3,13 @@
     "chainId": 44,
     "homesteadBlock": 0,
     "eip150Block": 0,
+    "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "eip155Block": 0,
     "eip158Block": 0,
     "byzantiumBlock": 5,
     "constantinopleBlock": 10,
-    "constantinopleFixBlock": 20
+    "petersburgBlock": 20,
+    "ethash": {}
   },
   "nonce": "0x0",
   "timestamp": "0x5d456da8", 
