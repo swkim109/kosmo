@@ -30,21 +30,3 @@ code {
     flex-direction: row;
 }
 
-
-.left {
-    width: "30%";
-    padding: 10px;
-    background-color: #ffff00;
-}
-
-
-.right {
-    padding-top: 24px;
-    padding-left: 50px;
-}
-
-
-.active{
-  color:green;
-  font-weight: bold;
-}
