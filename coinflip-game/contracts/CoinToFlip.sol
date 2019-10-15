@@ -29,7 +29,7 @@ contract CoinToFlip {
 
     mapping (address => Bet) bets; //Bet book
 
-    event Reveal(uint reveal);//1 or 2
+    event Reveal(address indexed gambler, uint reveal, uint amount);//1 or 2
     event Payment(address indexed beneficiary, uint amount);
     event FailedPayment(address indexed beneficiary, uint amount);
 
@@ -70,21 +70,13 @@ contract CoinToFlip {
         require (betMask > 0 && betMask < 256, "Mask should be 8 bit");
 
         Bet storage bet = bets[msg.sender]; //mapping bets(address => Bet)
-        //Bet bet = bets[msg.sender];
 
         require (bet.gambler == address(0), "Bet should be empty state."); //can place a bet
-        //if (bet.gambler == null) X
 
         //count bet bit in the betMask
         //0000 0011  number of bits = 2
         //0000 0001  number of bits = 1
         uint8 numOfBetBit = countBits(betMask);
-
-        bet.amount = amount;
-        bet.numOfBetBit = numOfBetBit;
-        bet.placeBlockNumber = block.number;
-        bet.mask = betMask;
-        bet.gambler = msg.sender;
 
         // need to lock possible winning amount to pay
         uint possibleWinningAmount = getWinningAmount(amount, numOfBetBit);
@@ -92,6 +84,13 @@ contract CoinToFlip {
 
         // Check whether house has enough ETH to pay the bet.
         require(lockedInBets < address(this).balance, "Cannot afford to pay the bet.");
+
+        bet.amount = amount;
+        bet.numOfBetBit = numOfBetBit;
+        bet.placeBlockNumber = block.number;
+        bet.mask = betMask;
+        bet.gambler = msg.sender;
+
     }
 
     function getWinningAmount(uint amount, uint8 numOfBetBit) private pure returns (uint winningAmount) {
@@ -104,7 +103,7 @@ contract CoinToFlip {
             houseFee = HOUSE_MIN_FEE;
         }
 
-        //reward calculation is depends on your own idea
+        //reward is depends on your own idea
         uint reward = amount / (MAX_CASE + (numOfBetBit-1));
 
         winningAmount = (amount - houseFee) + reward;
@@ -137,14 +136,14 @@ contract CoinToFlip {
             winningAmount = possibleWinningAmount;
         }
 
-        emit Reveal(2 ** reveal);
+        emit Reveal(gambler, 2 ** reveal, winningAmount);
+
+        lockedInBets -= possibleWinningAmount;
+        clearBet(msg.sender);
 
         if (winningAmount > 0) {
             sendFunds(gambler, winningAmount);
         }
-
-        lockedInBets -= possibleWinningAmount;
-        clearBet(msg.sender);
     }
 
     function sendFunds(address payable beneficiary, uint amount) private {
@@ -152,6 +151,7 @@ contract CoinToFlip {
         if (beneficiary.send(amount)) {
             emit Payment(beneficiary, amount);
         } else {
+            // 실패하는 경우 대책은?
             emit FailedPayment(beneficiary, amount);
         }
     }
@@ -164,7 +164,7 @@ contract CoinToFlip {
         bet.numOfBetBit = 0;
         bet.placeBlockNumber = 0;
         bet.mask = 0;
-        bet.gambler = address(0); // NULL
+        bet.gambler = address(0);
     }
 
 
@@ -204,6 +204,4 @@ contract CoinToFlip {
         }
         return count;
     }
-
-
 }
