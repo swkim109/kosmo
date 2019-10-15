@@ -43,7 +43,6 @@ class CoinFlip extends Component {
     handleClickFlip = async () => {
 
         const {accounts, contract} = this.state;
-
         if (!this.state.web3) {
             console.log('App is not ready');
             return;
@@ -62,33 +61,58 @@ class CoinFlip extends Component {
 
     handleClickBet = async () => {
 
-        const {web3, accounts, contract} = this.state;  //object destructuring in ES6
-
+        const {web3, accounts, contract} = this.state;
         if (!this.state.web3) {
             console.log('App is not ready');
             return;
         }
-
         if (accounts[0] === undefined) {
             alert('Please press F5 to connect Dapp'); //Metamask account need to refresh page
             return;
         }
 
-        // if (localStorage.getItem("txHash") !== "") {
-        //     alert('Already bet');
-        //     return;
-        // }
 
-        //TODO-3
+        if (this.state.value <= 0 || this.state.checked === 0) {
+            this.setState({show: true});
+        } else {
+            this.setState({pending: true, show: false, reveal: 0, reward: 0,});
+            try {
 
+                if (this.checkBetStatus()) {
+
+                    //TODO-3
+
+                }
+
+            } catch (error) {
+                console.log(error.message);
+                this.setState({pending: false});
+            }
+        }
+    }
+
+    saveBetStatus = (txHash) => {
+        localStorage.setItem('txHash', txHash);
+        this.getHouseBalance();
+    }
+
+    checkBetStatus = () => {
+
+        let bBet = false;
+        if (localStorage.getItem("txHash") !== "") {
+            this.setState({pending: false});
+            alert('You have already bet 😅');
+        } else {
+            bBet = true;
+        }
+        return bBet;
     }
 
 
     handleClickReset = () => {
         this.setState({value: 0, checked: 0, reveal: 0, reward: 0});
 
-        localStorage.setItem('txHash', "");
-        this.getHouseBalance();
+        this.saveBetStatus("");
         this.inputEth.value = '';
     }
 
@@ -110,10 +134,10 @@ class CoinFlip extends Component {
             return;
         }
 
-        //TODO
+        //TODO-5
+
 
     }
-
 
 
     getHouseBalance = () => {
@@ -126,21 +150,12 @@ class CoinFlip extends Component {
 
 
     watchEvent = (event) => {
-        //TODO
-        //const {web3} = this.state;
-        //this.setState({reveal: web3.utils.toDecimal(event.returnValues.reveal)}, ()=>{localStorage.setItem('txHash', ""); this.getHouseBalance()});
-
-    };
-
-
-    watchPaymentEvent = (event) => {
+        //console.log(event.returnValues);
         const {web3} = this.state;
-        const r = web3.utils.fromWei(event.returnValues.amount.toString(), 'ether');
-
-        if (r > 0) {
-            this.setState({reward: r});
-        }
-    }
+        const reveal = web3.utils.toDecimal(event.returnValues.reveal);
+        const reward = web3.utils.fromWei(event.returnValues.amount.toString(), 'ether');
+        this.setState({reveal, reward});
+    };
 
 
     async componentDidMount() {
@@ -160,17 +175,8 @@ class CoinFlip extends Component {
                 deployedNetwork && deployedNetwork.address,
             );
 
-
             //TODO-4
-            //Reveal(), Payment()
 
-
-
-
-            // window.ethereum.on('accountsChanged', function (accounts) {
-            //     console.log(accounts[0]);
-            //     window.location.reload();
-            // });
 
             this.setState({web3, accounts, contract: instance}, this.getHouseBalance);
 
@@ -247,17 +253,17 @@ class CoinFlip extends Component {
 
                                 <ButtonToolbar>
                                     <ButtonGroup justified>
-                                        <Button href="#" bsStyle="primary" bsSize="large">
+                                        <Button href="#" bsStyle="primary" bsSize="large" onClick={this.handleClickBet}>
                                             Bet
                                         </Button>
-                                        <Button href="#" bsStyle="success" bsSize="large">
+                                        <Button href="#" bsStyle="success" bsSize="large" onClick={this.handleClickFlip}>
                                             Flip!
                                         </Button>
-                                        <Button href="#" bsSize="large">
-                                            Cancel
+                                        <Button href="#" bsSize="large" onClick={this.handleRefund}>
+                                            Refund
                                         </Button>
-                                        <Button href="#" bsStyle="info" bsSize="large">
-                                            Reset
+                                        <Button href="#" bsStyle="info" bsSize="large" onClick={this.handleClickReset}>
+                                            Clear
                                         </Button>
                                     </ButtonGroup>
                                 </ButtonToolbar>
@@ -273,7 +279,7 @@ class CoinFlip extends Component {
                                 </Panel.Title>
                             </Panel.Heading>
                             <Panel.Body>
-                                {localStorage.getItem("txHash")}
+                                <b>{localStorage.getItem("txHash")!==""?"BET":null}</b>
                             </Panel.Body>
                         </Panel>
                     </Col>
@@ -303,7 +309,7 @@ function Reveal(props) {
 
     let coinImg = CoinUnknown;
     if (props.reveal === 2) {
-        coinImg =  CoinHeads;
+        coinImg = CoinHeads;
     } else if (props.reveal === 1) {
         coinImg = CoinTails;
     }
