@@ -172,22 +172,23 @@ contract CoinToFlip {
     function refundBet() external {
 
         Bet storage bet = bets[msg.sender];
+
+        uint8 numOfBetBit = bet.numOfBetBit;
         uint amount = bet.amount;
+        address payable gambler = bet.gambler;
 
         // Check that bet has been already mined.
         require(block.number > bet.placeBlockNumber, "refundBet in the same block as placeBet, or before.");
-        require (amount > 0, "Bet should be in an active state");
-
-        uint8 numOfBetBit = bet.numOfBetBit;
-
-        // Send the refund.
-        sendFunds(bet.gambler, amount);
+        require(amount > 0, "Bet should be in an active state");
 
         uint possibleWinningAmount;
         possibleWinningAmount = getWinningAmount(amount, numOfBetBit);
 
         lockedInBets -= possibleWinningAmount;
         clearBet(msg.sender);
+
+        // Send the refund.
+        sendFunds(gambler, amount);
     }
 
 
