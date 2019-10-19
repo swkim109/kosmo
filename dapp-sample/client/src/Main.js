@@ -6,6 +6,7 @@ import {Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import {InputGroup, FormControl} from 'react-bootstrap';
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Loader from 'react-loader-spinner';
+import EventList from "./EventList";
 
 
 import getWeb3 from './utils/getWeb3';
@@ -25,7 +26,8 @@ class Main extends Component {
 
         val: 0,
         storedData: '',
-        pending: false
+        pending: false,
+        eventList: []
     };
 
     async componentDidMount() {
@@ -44,19 +46,20 @@ class Main extends Component {
             );
 
             //TODO-3
-            instance.events.Change()
-                .on('data', (event) => {
-                    this.handleEvent(event);
-                })
-                .on('error', (err) => { console.log(err) } );
+            // instance.events.Change()
+            //     .on('data', (event) => {
+            //         this.handleEvent(event);
+            //     })
+            //     .on('error', (err) => { console.log(err) } );
 
 
             // TODO-4
-            // web3.eth.subscribe("logs", {address: instance.address})
-            //     .on('data', (log) => {
-            //         this.handleEventLog(log);
-            //     })
-            //     .on('error', (err) => console.log(err));
+            web3.eth.subscribe("logs", {address: instance.address})
+                .on('data', (log) => {
+                    this.handleEventLog(log);
+                })
+                .on('error', (err) => console.log(err));
+
 
 
             this.setState({web3, accounts, networkId, contract: instance});
@@ -96,16 +99,31 @@ class Main extends Component {
                         storedData: event.returnValues.newVal });
     }
 
-
     // TODO-4
     handleEventLog = (log) => {
 
         const {web3} = this.state;
-        const params = [{type: 'string', name: 'message'}, {type: 'uint256', name: 'newVal'}];
+        const params = [{type: 'string', name: 'message'}
+        , {type: 'uint256', name: 'newVal'}];
         const returnValues = web3.eth.abi.decodeLog(params, log.data);
+
+        this.getPastEvents(log.blockNumber);
 
         this.setState({ pending: !this.state.pending,
                         storedData: returnValues.newVal });
+    }
+
+    getPastEvents = (blockNumber) => {
+        const {contract} = this.state;
+        let arr = [];
+        const n = parseFloat(blockNumber);
+        const fromBlock = n - 4;
+        if (fromBlock >= 0) {
+            contract.getPastEvents("Change", {fromBlock}).then((events) => {
+                arr = [...events];
+                this.setState({eventList: arr});
+            });
+        }
     }
 
 
@@ -163,7 +181,7 @@ class Main extends Component {
                                     </p>
                                 </div>
                                 <div style={{display:"inline-block", float:"right"}}>
-                                    {this.state.pending?<Loader type="Grid" color="#CE62D4" height="50" width="50"/>:null}
+{this.state.pending?<Loader type="Grid" color="#CE62D4" height="50" width="50"/>:null}
                                 </div>
                             </Panel.Body>
                         </Panel>
@@ -172,7 +190,7 @@ class Main extends Component {
 
                 {/* TODO-5 Event list */}
                 <Row>
-                    <Col md={6}>
+                    <Col md={5}>
                         <Panel bsStyle="info">
                             <Panel.Heading>
                                 <Panel.Title>
