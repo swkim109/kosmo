@@ -56,9 +56,7 @@ class CoinFlip extends Component {
             alert('Please press F5 to connect Dapp'); //need main page maybe?
             return;
         }
-
         this.setState({pending: true});
-
         //TODO-2
         try {
             await contract.methods.revealResult().send({from:accounts[0]});
@@ -91,16 +89,16 @@ class CoinFlip extends Component {
             this.setState({pending: true, show: false, reveal: 0, reward: 0,});
             try {
 
-                if (!this.checkBet()) {
+                if (!this.checkBetStatus()) {
 
-                    //TODO-3
-                    const r = await contract.methods.placeBet(this.state.checked).send(
-                        {from:accounts[0],
-                            value:web3.utils.toWei(String(this.state.value), 'ether')});
+        //TODO-3
+        const r = await contract.methods.placeBet(this.state.checked).send(
+            {from:accounts[0], value:web3.utils.toWei(String(this.state.value), 'ether')});
 
-                    console.log(r.transactionHash);
-                    this.saveBetStatus(r.transactionHash);
-                    this.setState({pending: false});
+        console.log(r.transactionHash);
+        this.saveBetStatus(r.transactionHash);
+        this.setState({pending: false});
+
                 }
 
             } catch (error) {
@@ -115,7 +113,7 @@ class CoinFlip extends Component {
         this.getHouseBalance();
     }
 
-    checkBet = () => {
+    checkBetStatus = () => {
 
         let bBet = false;
         if (localStorage.getItem("txHash") !== "") {
@@ -157,8 +155,6 @@ class CoinFlip extends Component {
         if (r.transactionHash !== "") {
             this.saveBetStatus("");
         }
-
-
     }
 
 

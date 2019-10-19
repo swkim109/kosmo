@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
@@ -107,12 +106,14 @@ class Main extends Component {
         , {type: 'uint256', name: 'newVal'}];
         const returnValues = web3.eth.abi.decodeLog(params, log.data);
 
+        // TODO-5
         this.getPastEvents(log.blockNumber);
 
         this.setState({ pending: !this.state.pending,
                         storedData: returnValues.newVal });
     }
 
+    // TODO-5
     getPastEvents = (blockNumber) => {
         const {contract} = this.state;
         let arr = [];
@@ -125,7 +126,6 @@ class Main extends Component {
             });
         }
     }
-
 
     handleChange = (e) => {
 
