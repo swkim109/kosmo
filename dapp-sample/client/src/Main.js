@@ -54,15 +54,10 @@ class Main extends Component {
 
             // TODO-4
             web3.eth.subscribe("logs", {address: instance.address})
-                .on('data', (log) => {
-                    this.handleEventLog(log);
-                })
+                .on('data', (log) => { this.handleEventLog(log) })
                 .on('error', (err) => console.log(err));
 
-
-
             this.setState({web3, accounts, networkId, contract: instance});
-
 
         } catch (error) {
             // Catch any errors for any of the above operations.
@@ -102,8 +97,7 @@ class Main extends Component {
     handleEventLog = (log) => {
 
         const {web3} = this.state;
-        const params = [{type: 'string', name: 'message'}
-        , {type: 'uint256', name: 'newVal'}];
+        const params = [{type: 'string', name: 'message'}, {type: 'uint256', name: 'newVal'}];
         const returnValues = web3.eth.abi.decodeLog(params, log.data);
 
         // TODO-5
