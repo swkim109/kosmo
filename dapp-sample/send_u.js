@@ -1,7 +1,7 @@
 //메타마스크 계정
 module.exports = function(callback) {
 
-    const toAddr = "0xAFc4F9F3bA806dd2F8e47A524fFDa2418bBFc08a";
+    const toAddr = "0x583031d1113ad414f02576bd6afabfb302140225";
 
     web3.eth.getAccounts().then((accounts) => {
         web3.eth.sendTransaction(
