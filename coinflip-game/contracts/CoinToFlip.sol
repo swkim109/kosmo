@@ -90,7 +90,6 @@ contract CoinToFlip {
         bet.placeBlockNumber = block.number;
         bet.mask = betMask;
         bet.gambler = msg.sender;
-
     }
 
     function getWinningAmount(uint amount, uint8 numOfBetBit) private pure returns (uint winningAmount) {
