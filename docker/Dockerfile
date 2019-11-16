@@ -1,4 +1,4 @@
-# Geth Blue Thessia (v1.9.2)
+# Geth
 # --datadir /root/edu
 # example: docker build -t eth-edu:0.1 .
 
