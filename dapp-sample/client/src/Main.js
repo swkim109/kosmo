@@ -76,12 +76,16 @@ class Main extends Component {
             try {
                 // send tx
                 await contract.methods.set(this.state.val).send({from:accounts[0]});
+                // contract.methods.set(this.state.val).send({from:accounts[0]})
+                //     .then(result=>console.log(result))
+                //     .catch(error=>console.log(error));
 
-                // read operation
+                //read operation
                 //await contract.methods.get().call();
 
             } catch (err) {
-                //console.log(err.message);
+                // Ganache 와 Geth 에 따라 예외처리가 차이가 있음
+                //console.log(err);
                 this.setState({pending: false});
             }
         }
