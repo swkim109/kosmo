@@ -1,4 +1,4 @@
-# Geth Blue Thessia (v1.9.2)
+# Geth
 # --datadir /root/edu
 # example: docker build -t eth-edu:0.1 .
 
@@ -14,14 +14,13 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install Geth from PPA
-RUN apt-get update \ 
+# Always combine RUN apt-get update with apt-get install in the same RUN
+RUN apt-get update \
       && apt-get install -y software-properties-common \
       && add-apt-repository -y ppa:ethereum/ethereum \
       && apt-get update \
-      && apt-get install -y ethereum
-
-# Always combine RUN apt-get update with apt-get install in the same RUN
-RUN apt-get update && apt-get install -y git curl tree vim
+      && apt-get install -y ethereum \
+      && apt-get install -y git curl tree vim
 
 RUN echo $TZ > /etc/timezone && \
     apt-get update && apt-get install -y tzdata && \
