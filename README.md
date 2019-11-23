@@ -32,7 +32,7 @@ docker images
 * 사용자 디렉토리로 이동하여 shared 디렉토리를 생성합니다(컨테이너와 호스트 컴퓨터(여기서는 Windows 10)와 공유폴더를 
 설정하기 위함입니다).
 
-* 사용자 디렉토리에서 다음 명령어로 컨테이너를 실행합니다. `--name` 옵션의 이름은 컨테이너 이름입니다.
+* 사용자 디렉토리에서 다음 명령어로 컨테이너를 생성합니다. `--name` 옵션의 이름은 컨테이너 이름입니다.
 
 ```
 docker run -it --name eth-kosmo -v ~/shared:/root/shared -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44  --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock
@@ -50,7 +50,19 @@ docker stop eth-kosmo
 docker start eth-kosmo
 ``` 
 
-# Geth 내부에서 콘솔 연결하기
+* 다음 명령어로 컨테이너에서 실행되 Geth의 로그를 볼 수 있습니다.
+
+```
+docker logs -f eth-kosmo
+``` 
+
+* 다음과 같이 리눅스 쉘을 실행하여 컨테이너에 접속할 수 있습니다.
+
+```
+docker exec -it eth-kosmo /bin/bash
+``` 
+
+# Geth 자바스크립트 콘솔 연결하기
 
 Geth는 JSON-RPC 서버의 기능을 제공하기 때문에 이더리움 블록체인의 다양한 정보를 외부로 제공할 수 있습니다. [Postman](https://www.getpostman.com/)과 같은 범용 API 호출 프로그램을 통해서 
 Geth와 인터페이스 할 수 있습니다.
@@ -61,4 +73,3 @@ Geth가 설치된 로컬에서도 `attach` 명령어를 사용하여 내부 자�
 ```
 geth attach ipc:/root/edu/geth.ipc
 ``` 
-
