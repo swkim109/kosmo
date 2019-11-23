@@ -72,4 +72,26 @@ Geth가 설치된 로컬에서도 `attach` 명령어를 사용하여 내부 자�
 
 ```
 geth attach ipc:/root/edu/geth.ipc
+
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.9.7-stable-a718daa6/linux-amd64/go1.13.4
+coinbase: 0x70f13b4a489bf8d039fb59e0ca47215aa1b153a7
+at block: 1000 (Sat, 23 Nov 2019 12:19:51 KST)
+ datadir: /root/edu
+ modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+> web3.version
+{
+  api: "0.20.1",
+  ethereum: "0x40",
+  network: "44",
+  node: "Geth/v1.9.7-stable-a718daa6/linux-amd64/go1.13.4",
+  whisper: undefined,
+  getEthereum: function(callback),
+  getNetwork: function(callback),
+  getNode: function(callback),
+  getWhisper: function(callback)
+}
+>
 ``` 
