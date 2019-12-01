@@ -2,7 +2,7 @@ pragma solidity ^0.5.11;
 
 import "./Reentrance.sol";
 
-contract GoneWithEth {
+contract Attack {
 
     address payable public owner;
     Reentrance public reentrance;
