@@ -27,7 +27,7 @@ Reference 타입인 `bytes`와 Reference 타입이 다른 변수에 할당될 �
 컨트랙트 사이에서 이더를 송금하는 방법을 알아봅니다.
 
 * Reentrance.sol, GoneWithEth.sol  
-"Reentrancy" 공격에 대한 이해와 실습
+"Reentrancy" 공격에 대한 이해와 실습, "Checks-Effects-Interactions" 패턴
  
 
  
