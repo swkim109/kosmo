@@ -152,7 +152,7 @@ class CoinFlip extends Component {
     watchEvent = (event) => {
         //console.log(event.returnValues);
         const {web3} = this.state;
-        const reveal = web3.utils.toDecimal(event.returnValues.reveal);
+        const reveal = parseInt(event.returnValues.reveal);
         const reward = web3.utils.fromWei(event.returnValues.amount.toString(), 'ether');
         this.setState({reveal, reward});
     };
@@ -336,7 +336,7 @@ const PendingModal = ({children}) => (
     <ModalWrapper>
         <div style={{marginBottom: '10px'}}>{children}</div>
     </ModalWrapper>
-)
+);
 
 
 export default CoinFlip;
