@@ -21,7 +21,7 @@ RUN apt-get update \
       && add-apt-repository -y ppa:ethereum/ethereum \
       && apt-get update \
       && apt-get install -y ethereum \
-      && apt-get install -y git curl tree vim
+      && apt-get install -y git curl tree vim netcat-openbsd
 
 RUN echo $TZ > /etc/timezone && \
     apt-get update && apt-get install -y tzdata && \
@@ -32,7 +32,11 @@ RUN echo $TZ > /etc/timezone && \
 RUN mkdir $HOME/edu && mkdir $HOME/shared
 
 # genesis.json
-COPY ./genesis.json $HOME/genesis.json
+COPY ./genesis_istanbul.json $HOME/genesis.json
+# COPY ./genesis.json $HOME/genesis.json
+
+# config
+COPY ./config.toml $HOME/config.toml
 
 RUN geth --datadir=$DATADIR --nousb init $HOME/genesis.json
 
