@@ -9,13 +9,14 @@
     "byzantiumBlock": 5,
     "constantinopleBlock": 10,
     "petersburgBlock": 20,
+    "istanbulBlock": 50,
     "ethash": {}
   },
   "nonce": "0x0",
   "timestamp": "0x5d456da8", 
   "extraData": "0x00",
-  "gasLimit": "0x7A1200",
-  "difficulty": "0x1",
+  "gasLimit": "0x895440",
+  "difficulty": "0x80000",
   "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
   "coinbase": "0x0000000000000000000000000000000000000000",
   "alloc": {
