@@ -26,7 +26,7 @@ contract MySol {
     function cutElement() public {
         if (arr.length > 0) {
             arr.length = arr.length - 1; //cut the last element
+            //arr.pop();
         }
-        //arr.pop();
     }
 }
