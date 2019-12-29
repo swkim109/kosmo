@@ -17,7 +17,7 @@ contract("CoinFlip-2", function([_, player1, house]) {
             const MAX_CASE = new this.BN('2');
 
             const amount = new this.BN(v);
-            const fee = amount.mul(HOUSE_FEE_PERCENT).div(PERCENT);
+            let fee = amount.mul(HOUSE_FEE_PERCENT).div(PERCENT);
 
             if (fee.lt(HOUSE_MIN_FEE)) {
                 fee = HOUSE_MIN_FEE;
