@@ -21,7 +21,7 @@ RUN apt-get update \
       && add-apt-repository -y ppa:ethereum/ethereum \
       && apt-get update \
       && apt-get install -y ethereum \
-      && apt-get install -y git curl tree vim netcat-openbsd
+      && apt-get install -y git curl tree vim iputils-ping netcat-openbsd
 
 RUN echo $TZ > /etc/timezone && \
     apt-get update && apt-get install -y tzdata && \
