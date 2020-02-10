@@ -20,7 +20,7 @@ RUN apt-get update \
       && add-apt-repository -y ppa:ethereum/ethereum \
       && apt-get update \
       && apt-get install -y ethereum \
-      && apt-get install -y git curl tree vim iputils-ping
+      && apt-get install -y git curl tree vim iputils-ping dos2unix
 
 RUN echo $TZ > /etc/timezone && \
     apt-get update && apt-get install -y tzdata && \
@@ -36,5 +36,7 @@ COPY ./genesis.json $HOME/genesis.json
 RUN geth --datadir=$DATADIR --nousb init $HOME/genesis.json
 
 COPY ./.vimrc $HOME/.vimrc
+
+RUN dos2unix $HOME/.vimrc
 
 CMD ["/bin/bash"]
