@@ -9,7 +9,10 @@
     "byzantiumBlock": 5,
     "constantinopleBlock": 10,
     "petersburgBlock": 20,
-    "ethash": {}
+    "ethash": {
+      "period": 15,
+      "epoch": 30000
+    }
   },
   "nonce": "0x0",
   "timestamp": "0x5d456da8", 
