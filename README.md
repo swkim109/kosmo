@@ -35,7 +35,7 @@ docker images
 * 사용자 디렉토리에서 다음 명령어로 컨테이너를 생성합니다. `--name` 옵션의 이름은 컨테이너 이름입니다.
 
 ```
-docker run -it --name eth-kosmo -v ~/shared:/root/shared -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44  --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock
+docker run -it --name eth-kosmo -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44  --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock
 ```
 
 * 다음 명령어는 컨테이너를 중지합니다.
