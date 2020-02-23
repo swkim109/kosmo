@@ -1,6 +1,6 @@
-pragma solidity ^0.5.11;
+pragma solidity 0.5.16;
 
-contract Reentrance {
+contract Donation {
 
     mapping(address => uint) public balances;
 

