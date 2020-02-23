@@ -16,8 +16,7 @@ contract Donation {
 
        if (balances[msg.sender] >= _amount) {
 
-          (bool bOk, bytes memory returnData) =
-          msg.sender.call.value(_amount)(abi.encodeWithSelector(""));
+          (bool bOk, ) = msg.sender.call.value(_amount)(abi.encodeWithSelector(""));
 
           if (!bOk) {
               revert();
