@@ -60,7 +60,7 @@ npm run start
 활용할 수 있는 유용한 도구입니다. 현재 5.1.14 버전까지 정식 [배포](https://github.com/trufflesuite)되었습니다.
 
 트러플은 기본적으로 npm 으로 설치됩니다. Node.js를 설치하면 npm도 함께 설치되므로 우선 Node.js LTS 버전을 설치합니다. 각각 개별적으로 버전이 관리되고 배포되므로 
-설치시 여러 가지 버전 오류, 의존성 변경 등으로 문제가 발생할 수 있으므로 배포 이슈나 버그 리포팅을 수시로 점검할 필요가 있습니다. 여기서는 Node.js 12.16.1(npm 6.14.1) 기준으로 합니다.
+설치시 여러 가지 의존성 변경 등으로 인하여 문제가 발생할 수 있으므로 관련 정보를 확인할 필요가 있습니다. 여기서는 Node.js 12.16.1(npm 6.14.1) 기준으로 합니다.
 
 우선 [Node.js LTS](https://nodejs.org/ko/) 를 설치합니다. 이전 버전은 [여기서](https://nodejs.org/ko/download/releases/) 찾아봅니다.
 
@@ -87,13 +87,14 @@ Node v12.16.1
 Web3.js v1.2.1
 ```
 
-여기서 Web3.js 버전이 1.2 이상임을 주의하기 바랍니다. 만약 이전 버전의 Truffle에서는 `web3@1.0.0-beta.35` 처럼 1.0 버전을 사용하는 경우가 있으므로 
-의존성이 있는 모듈이 Node.js 12 버전과 호환되지 않을 수 있습니다. 그런 경우 10으로 다운그레이드 해야 합니다.
+여기서 Web3.js 버전이 1.2 이상임을 주의하기 바랍니다. 이전 버전의 Truffle에서는 `web3@1.0.0-beta.35` 처럼 1.0 버전을 사용하는 경우가 있으므로 
+의존 관계에 있는 모듈이 최근 Node.js 버전과 호환되지 않을 수 있습니다. 그런 경우는 다운그레이드 해야 합니다.
 
-자바스크립트 기반의 이더리움 Dapp 개발에 필요한 모듈들은, <b>윈도우즈</b>에서는 빌드 도구 <b>windows-build-tools</b>를 미리 설치해 주는 것이 좋습니다.
-Node.js 자바스크립트 모듈들은 운영체제에 맞게 재컴파일되어 설치되기 때문에 이런 도구가 없으면 `npm install`에서 다양한 오류가 발생합니다. 
+이더리움 Dapp 개발에 필요한 자바스크립트 패키지들을 설치할 때, <b>특히 윈도우즈</b>에서는 빌드 도구 <b>windows-build-tools</b>를 미리 설치해 주는 것이 좋습니다.
+Node.js 자바스크립트 모듈들은 운영체제에 맞게 재컴파일되어 설치되기 때문에 이런 도구가 없으면 `npm install` 시점에 다양한 오류가 발생합니다. 
 
 ✅주의할 점은 windows-build-tools를 설치할 때는 반드시 <b>관리자 파워쉘</b>에서 실행해야 합니다.
+
 ```shell script
 npm install -g --production windows-build-tools --vs2015
 ```
@@ -102,14 +103,14 @@ npm install -g --production windows-build-tools --vs2015
 이 플래그가 생략되면 다른 최근 버전을 설치하게 되는데 이렇게 되면  `npm install` 에서 빌드 오류 가능성이 많습니다. 
 windows-build-tools는 python 2.7을 함께 설치합니다.
 
-npm 환경을 다음과 같이 확인하여 해당 설정 부분이 생성되었는지 확인합니다.
+npm 환경을 확인하여 해당 설정 부분이 생성되었는지 확인합니다.
  
 ```shell script
 npm config list
 msvs_version = "2015"
 python = "C:\Users\foo\.windows-build-tools\python27\python.exe"
 ```
-위와 같은 준비가 끝났으면 Truffle 박스 중에 react 박스를 설치하여 Dapp 개발에 필요한 모듈이 큰 문제 없이 설치되는지 확인할 수 있습니다.
+준비가 끝났으면 Truffle 박스 중에 react 박스를 설치하여 Dapp 개발에 필요한 모듈이 큰 문제 없이 설치되는지 확인합니다.
 
 ```shell script
 mkdir react-dapp
