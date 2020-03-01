@@ -12,9 +12,9 @@ SimpleStorage 예제를 통해 애플리케이션과 스마트 컨트랙트가 �
 * 컨트랙트에서 정의한 이벤트를 애플리케이션에서 활용하는 방법
 
 
-## dapp-sample 설치
+## dapp-sample 예제
 
-dapp-sample Truffle react 박스로 만들어진 샘플 프로젝트 입니다. 상태변수에 값을 저장하고 이벤트를 받아서 그 값을 화면에 표시합니다. 
+dapp-sample은 Truffle react 박스로 만들어진 샘플 프로젝트 입니다. 컨트랙트의 상태변수에 값을 저장하고 이벤트를 받아서 그 값을 화면에 표시합니다. 
 
 우선 dapp-sample 디렉토리에서 SimpleStorage.sol 컨트랙트를 컴파일 합니다.
 
@@ -94,7 +94,7 @@ Web3.js v1.2.1
 자바스크립트 기반의 이더리움 Dapp 개발에 필요한 모듈들은, <b>윈도우즈</b>에서는 빌드 도구 windows-build-tools를 미리 설치해 주는 것이 좋습니다.
 Node.js 자바스크립트 모듈들은 운영체제에 맞게 재컴파일되어 설치되기 때문에 이런 도구가 없으면 `npm install`에서 다양한 오류가 발생합니다. 
 
-주의할 점은 windows-build-tools를 설치할 때는 반드시 <b>관리자 파워쉘</b>에서 실행해야 합니다.
+주의할 점은 windows-build-tools를 설치할 때는 반드시 <b>관리자 파워쉘</b> ✅에서 실행해야 합니다.
 ```shell script
 npm install -g --production windows-build-tools --vs2015
 ```
@@ -137,7 +137,7 @@ Commands:
   Build for production: cd client && npm run build
 
 ```  
-해당 프로젝트의 모듈을 살펴볼 수 있습니다.
+해당 프로젝트가 사용하는 패키지를 살펴볼 수 있습니다.
 
 ```shell script
 npm list --depth 0
