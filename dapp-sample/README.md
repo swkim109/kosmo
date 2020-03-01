@@ -94,7 +94,7 @@ Web3.js v1.2.1
 자바스크립트 기반의 이더리움 Dapp 개발에 필요한 모듈들은, <b>윈도우즈</b>에서는 빌드 도구 windows-build-tools를 미리 설치해 주는 것이 좋습니다.
 Node.js 자바스크립트 모듈들은 운영체제에 맞게 재컴파일되어 설치되기 때문에 이런 도구가 없으면 `npm install`에서 다양한 오류가 발생합니다. 
 
-주의할 점은 windows-build-tools를 설치할 때는 반드시 <b>관리자 파워쉘</b> ✅에서 실행해야 합니다.
+✅주의할 점은 windows-build-tools를 설치할 때는 반드시 <b>관리자 파워쉘</b>에서 실행해야 합니다.
 ```shell script
 npm install -g --production windows-build-tools --vs2015
 ```
