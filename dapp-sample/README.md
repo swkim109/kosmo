@@ -101,7 +101,7 @@ npm install -g --production windows-build-tools --vs2015
 
 `--vs2015` 플래그는 모듈 빌드에 사용되는 비주얼 스튜디오 버전을 2015로 지정하는 것으로, 
 이 플래그가 생략되면 다른 최근 버전을 설치하게 되는데 이렇게 되면  `npm install` 에서 빌드 오류 가능성이 많습니다. 
-windows-build-tools 는 python 2.7을 함께 설치하게 됩니다.
+windows-build-tools는 python 2.7을 함께 설치합니다.
 
 npm 환경을 다음과 같이 확인하여 해당 설정 부분이 생성되었는지 확인합니다.
  
