@@ -5,7 +5,7 @@ Reentrancy 공격은 솔리디티 스마트 컨트랙트에서 잘 알려진 보
 
 * Donation.sol  
 공격 대상이 되는 기부 컨트랙트로, 다음과 같이 동작합니다.  
-`donate(address _to)` 기부자 A는 수혜자 B를 수혜자로 지정하여 이더를 컨트랙트에 보내면 `balances` 라는 mappings 타입의 "장부"에 기록합니다.  
+`donate(address _to)` 기부자 A는 B를 수혜자로 지정하여 이더를 컨트랙트에 보내면 `balances` 라는 mappings 타입의 "장부"에 기록합니다.  
 `withdraw(uint _amount)` 수혜자 B는 자신에게 기부된 이더를 인출합니다. `balances`에 자신의 계정으로 기록된 금액 한도 내에서 인출할 수 있습니다.
  
 * Attacker.sol  
