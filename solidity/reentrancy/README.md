@@ -10,11 +10,11 @@ Reentrancy 공격은 솔리디티 스마트 컨트랙트에서 잘 알려진 보
  
 * Attacker.sol  
 해커가 만든 컨트랙트입니다. 
-먼저 해커는 공격 대상 컨트랙트 Donation.sol의 주소를 알아냅니다. `donate`라는 메소드를 실행시켜서 Attacker 컨트랙트 계정을 
-수혜자에게 소량의 이더를 기부합니다.  
+먼저 해커는 공격 대상 컨트랙트 Donation.sol의 주소를 알아냅니다. `donate`라는 메소드를 실행시켜서 Attacker.sol 컨트랙트 자신을 
+수혜자로 지정하여 소량의 이더를 기부합니다.  
 `donation.donate.value(0.5 ether)(address(this))`  
-그 다음에 fallback 함수를 실행시켜서 자신에게 기부된 이더를 인출합니다. 이 때 Donation.sol은 정상적으로 Attacker.sol에게 기부된 
-금액만큼 이더를 전송하게 되는데, Attacker.sol의 fallback payable 함수가 호출되게 됩니다. 그런데 fallback payable 함수를 보면 
+그 다음에 fallback 함수를 실행시켜서 자신에게 기부된 이더를 인출합니다. 이 때 Donation.sol은 정상적으로 수혜자에게 기부된 
+금액 한도 내에서 이더를 전송하게 되는데, Attacker.sol의 fallback payable 함수를 호출하게 됩니다. 그런데 fallback payable 함수를 보면 
 아래와 같이 다시 인출 메소드를 실행하도록 되어 있습니다. 즉 내부 트랜잭션 내에서는 아직 잔액이 남은 "상태"이므로 Donation.sol은 
 다시 동일한 요청한 금액을 Attacker.sol에게 전송합니다. 이렇게 계속 인출이 반복됩니다. 
 
