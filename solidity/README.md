@@ -26,8 +26,5 @@ Reference 타입인 `bytes`와 Reference 타입이 다른 변수에 할당될 �
 * ex20_Receiver.sol, ex20_Send.sol, ex20_Transfer.sol  
 컨트랙트 사이에서 이더를 송금하는 방법을 알아봅니다.
 
-* reentrancy/Donation.sol, Attacker.sol  
-재진입(Reentrancy) 공격에 대한 이해와 실습
- 
 
  
