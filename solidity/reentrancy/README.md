@@ -29,4 +29,4 @@ function() external payable {
 
 * 해결방법  
 `send/transfer`를 사용하여 이더를 전송(이스탄불 하드포크 이전)  
-<b>Check-Effects-Interaction</b> 패턴을 사용 
+<b>Checks-Effects-Interaction</b> 패턴을 사용 
