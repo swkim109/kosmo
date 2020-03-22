@@ -46,3 +46,9 @@ p {
     font-size: 18px;
 }
 
+.toast {
+    margin-bottom: 10px;
+    font-family: Consolas, serif;
+    font-size: 20px;
+    font-weight: bold;
+}
