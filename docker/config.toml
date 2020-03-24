@@ -16,3 +16,6 @@ WSPort = 8546
 WSOrigins = ["*"]
 WSModules = ["net", "web3", "eth", "shh"]
 
+[Node.P2P]
+NoDiscovery = true
+
