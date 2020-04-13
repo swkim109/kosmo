@@ -1,6 +1,6 @@
 # Geth
 # --datadir /root/edu
-# example: docker build -t eth-edu:0.1 .
+# example: docker build -t eth-img:xenial .
 
 FROM ubuntu:xenial
 
