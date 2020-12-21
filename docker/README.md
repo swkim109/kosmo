@@ -88,3 +88,24 @@ bootnode -nodekey nodekey.txt -writeaddress
 
 ```
 제네시스 파일의 내용이 같은 것으로 충분하지 않고 동일한 파일을 제네시스 파일로 사용할 것!
+
+## 파워쉘 실행시 실행권한 문제
+
+- 쉘 스크립트 실행시 권한 문제가 나오는 경우 다음을 확인 
+
+```
+Get-ExecutionPolicy -List
+
+        Scope ExecutionPolicy
+        ----- ---------------
+MachinePolicy       Undefined
+   UserPolicy       Undefined
+      Process       Undefined
+  CurrentUser       Undefined
+ LocalMachine       Undefined
+```
+`CurrentUser`가 `Undefined`인 경우 다음을 실행
+
+```
+Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope CurrentUser
+```
