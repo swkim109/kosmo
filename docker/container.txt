@@ -1,4 +1,7 @@
-docker run -it --name eth-kosmo -v ~/shared:/root/shared -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44  --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock --nodiscover
+docker run -it --name eth-kosmo -v ~/shared:/root/shared -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44 --syncmode "full" --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock --nodiscover
+
+- removing shared folder
+docker run -it --name eth-kosmo -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --networkid 44 --syncmode "full" --datadir /root/edu --nousb --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --ws --wsaddr 0.0.0.0 --wsorigins "*" --allow-insecure-unlock --nodiscover
 
 - using config file
 docker run -it --name eth-kosmo -v ~/shared:/root/shared -p 30303:30303 -p 8545:8545 -p 8546:8546 eth-img geth --config /root/config.toml
