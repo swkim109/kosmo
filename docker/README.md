@@ -36,7 +36,7 @@ geth attach ipc:$env:ETHEREUM_SOCKET
 ```
 bootnode -genkey nodekey.txt
 ```
-16진수 노드 키는 nodekey.txt 파일에 저장되고 이 키는 enode ID를 생성하는데도 사용되므로 다음과 같이 enode ID를 조회
+16진수 노드 키는 nodekey.txt 파일에 저장되고 이 키는 enode ID를 생성시 사용되므로 다음과 같이 enode ID를 조회
 ```
 bootnode -nodekey nodekey.txt -writeaddress 
 ```
