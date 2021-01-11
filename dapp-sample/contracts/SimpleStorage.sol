@@ -4,13 +4,6 @@ contract SimpleStorage {
 
     uint storedData;
 
-    struct Member {
-        uint balance;
-        uint age;
-    }
-
-    mapping (address => Member) public userToMember;
-
     event Change(string message, uint newVal);
 
     constructor (uint s) public {
@@ -26,12 +19,6 @@ contract SimpleStorage {
 
     function get() public view returns (uint) {
         return storedData;
-    }
-
-    function setUsers(address[] memory _addresses, uint[] memory _amounts) public {
-        for (uint i=0; i<_addresses.length; i++) {
-            userToMember[_addresses[i]].balance = _amounts[i];
-        }
     }
 
 }
