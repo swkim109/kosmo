@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Circle from './Circle';
 
 function MyComp() {
@@ -6,6 +6,14 @@ function MyComp() {
     const str = "Hello, Function!";
     
     const [flag, setFlag] = useState(false);
+    
+    useEffect(()=>{
+        
+        if (flag) {
+            console.log("TRUE");
+        }
+        
+    }, [flag])
     
     const handleClick = () => {
         setFlag(!flag);
