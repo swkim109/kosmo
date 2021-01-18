@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import Circle from './Circle';
+import Square from "./Square";
 
 function MyComp() {
     
@@ -21,7 +22,12 @@ function MyComp() {
     
     return (
         //<h1>{str}</h1>
-        <Circle handleClick={handleClick} filled={flag} />
+        
+        <div style={{marginLeft: "20px", marginTop: "20px"}}>
+            <Circle handleClick={handleClick} filled={flag} />
+            <Square filled={flag} />
+        </div>
+        
     );
     
 }

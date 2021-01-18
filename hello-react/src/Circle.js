@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 
-export default function ({filled, handleClick}) {
+export default function (props) {
     return (
-        <div onClick={handleClick}>
-            <FontAwesomeIcon icon={filled ? fasCircle : farCircle} size="5x"  />
+        <div onClick={props.handleClick}>
+            <FontAwesomeIcon icon={props.filled ? fasCircle : farCircle} size="5x"  />
         </div>
     )
 }
