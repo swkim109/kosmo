@@ -4,8 +4,8 @@ Educational resources for KOSMO Blockchain(Ethereum) course
 
 * [Blockchain Basic](http://bit.ly/2Vv390B)  
 * [Solidity](http://bit.ly/30JcjF2)  
-* [Javascript Basic, Truffle](http://bit.ly/2lGDO2E)  
-* [Dapp example](http://bit.ly/2kwIo3e)  
+* [Javascript Basic, Truffle](http://bit.ly/3sEe70A)  
+* [Simple Dapp](http://bit.ly/3sFHT4T)  
 
 
 # Docker Image 생성하기
