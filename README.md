@@ -1,6 +1,6 @@
 # kosmo
 
-Educational resources for KOSMO Blockchain(Ethereum) course
+Educational resources for Blockchain(Ethereum) course
 
 * [Blockchain Basic](http://bit.ly/2Vv390B)  
 * [Solidity](http://bit.ly/30JcjF2)  
